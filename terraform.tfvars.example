@@ -1,0 +1,5 @@
+admin_username       = ""
+admin_ssh_key        = ""
+jwt_secret           = ""
+maintenance_password = ""
+trusted_ip           = ""
