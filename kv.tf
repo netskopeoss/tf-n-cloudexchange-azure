@@ -103,8 +103,6 @@ resource "azurerm_key_vault_access_policy" "admin" {
 resource "azurerm_key_vault_secret" "cert" {
   count = var.own_cert == "Yes" ? 1 : 0
   name  = "ce-cert"
-  //value        = base64encode(file(var.ssl_cert))
-  //value        = replace(file(var.ssl_cert), "/\n/", "\n")
   value        = replace(file("${path.module}/certificates/${var.ssl_cert}"), "/\n/", "\n")
   key_vault_id = azurerm_key_vault.kv[count.index].id
   depends_on = [
@@ -114,8 +112,6 @@ resource "azurerm_key_vault_secret" "cert" {
 resource "azurerm_key_vault_secret" "key" {
   count = var.own_cert == "Yes" ? 1 : 0
   name  = "ce-key"
-  //value        = base64encode(file(var.ssl_key))
-  //value        = replace(file(var.ssl_key), "/\n/", "\n")
   value        = replace(file("${path.module}/certificates/${var.ssl_key}"), "/\n/", "\n")
   key_vault_id = azurerm_key_vault.kv[count.index].id
   depends_on = [
