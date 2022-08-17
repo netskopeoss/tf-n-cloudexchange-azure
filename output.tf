@@ -1,6 +1,6 @@
 output "public_ip_address" {
   description = "PIP address to Connect to CE"
-  value       = azurerm_public_ip.pip.*.ip_address
+  value       = azurerm_public_ip.pip.ip_address
 }
 
 output "private_ip_address" {
