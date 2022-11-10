@@ -106,12 +106,6 @@ variable "ssl_key" {
   default     = "cte_cert_key.key"
 }
 
-variable "beta_opt_in" {
-  type        = string
-  description = "Do you want to opt-in for beta?"
-  default     = "No"
-}
-
 variable "ui_port" {
   type        = string
   description = "Port number to use for the CE web interface."

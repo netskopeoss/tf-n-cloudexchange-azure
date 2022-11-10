@@ -9,7 +9,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   identity {
     type = "SystemAssigned"
   }
-  custom_data = var.own_cert == "No" ? base64encode(templatefile("${path.root}/scripts/bootstrap-selfsigned.tpl", { tenant = var.tenant_name, port = var.ui_port, jwt = var.jwt_secret, password = var.maintenance_password, beta = var.beta_opt_in })) : base64encode(templatefile("${path.root}/scripts/bootstrap-owncert.tpl", { tenant = var.tenant_name, port = var.ui_port, jwt = var.jwt_secret, password = var.maintenance_password, beta = var.beta_opt_in, kv = data.azurerm_key_vault.kvuri[count.index].vault_uri }))
+  custom_data = var.own_cert == "No" ? base64encode(templatefile("${path.root}/scripts/bootstrap-selfsigned.tpl", { tenant = var.tenant_name, port = var.ui_port, jwt = var.jwt_secret, password = var.maintenance_password })) : base64encode(templatefile("${path.root}/scripts/bootstrap-owncert.tpl", { tenant = var.tenant_name, port = var.ui_port, jwt = var.jwt_secret, password = var.maintenance_password, kv = data.azurerm_key_vault.kvuri[count.index].vault_uri }))
 
   network_interface_ids = [
     azurerm_network_interface.nic[count.index].id
